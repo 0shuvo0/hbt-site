@@ -1,0 +1,159 @@
+:root{
+	--text-color: #161616;
+	--primary-color: #FF8F00;
+	--primary-dark: #FF6F00;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	scroll-behavior: smooth;
+}
+body{
+	font-family: 'Roboto','Poppins',Arial,sans-serif;
+	font-size: 1rem;
+}
+a {
+	-webkit-text-decoration-skip: objects;
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent;
+}
+a:hover,button:hover {
+	cursor: pointer;
+}
+pre{
+	border-radius: 2px;
+	overflow: scroll;
+}
+
+
+.banner{
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.banner .logo{
+	max-width: 400px;
+	margin: 0 auto;
+}
+.banner p{
+	margin: 10px 0 20px 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+.banner p a{
+	color: var(--primary-color);
+	text-transform: uppercase;
+	font-size: 1.2em;
+	display: inline-block;
+}
+.banner p a:nth-child(2){
+	animation: separate 0.6s linear forwards;
+	animation-delay:  0.3s;
+}
+.banner p a:hover{
+	color: var(--primary-dark);
+}
+@keyframes separate{
+	0%{
+		margin: 0 0;
+	}
+	100%{
+		margin: 0 25px;
+	}
+}
+
+
+.b{
+	font-weight: bold;
+}
+.h1{
+	font-size: 2em;
+}
+.h2{
+	font-size: 1.5em;
+}
+.mb-1{
+	margin-bottom: 5px;
+}
+.mb-2{
+	margin-bottom: 10px;
+}
+
+
+section{
+	margin-bottom: 30px;
+}
+section .h1{
+	margin-bottom: 10px;
+}
+
+
+.rule .no{
+	font-weight: 900;
+}
+
+
+
+.mlc pre{
+	margin: 0;
+	padding: 3px 10px;
+	overflow-y: hidden;
+	border-radius: 0;
+}
+.mlc pre.first{
+	padding-top: 10px;
+	border-radius: 2px 2px 0 0;
+}
+.mlc pre.last{
+	padding-bottom: 10px;
+	border-radius: 0 0 2px 2px;
+	margin-bottom: 20px;
+}
+
+
+.highlight{
+	color: #E53935;
+	background-color: #FFEBEE;
+	padding: 1px 10px;
+	border-radius: 2px;
+}
+
+
+.utils .util, #advanced .adv-ex{
+	margin-bottom: 20px;
+}
+.utils .util pre{
+	margin: 5px 0;
+}
+
+
+.footer{
+	text-align: center;
+	padding-bottom: 5px;
+}
+
+
+
+
+.container{
+	padding: 0 11vw;
+}
+@media(max-width: 1150px){
+	padding: 0 9vw;
+}
+@media(max-width: 950px){
+	padding: 0 7vw;
+}
+@media(max-width: 650px){
+	padding: 0 5vw;
+}
+@media(max-width: 450px){
+	padding: 0 3vw;
+}

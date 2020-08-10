@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="hbt is a HTML Bundler and Template engine">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="">
+	<meta name="author" content="MdShuvo">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap">
+	<link href="css/rainbow/monokai.css" rel="stylesheet" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/style.css">
+	<title>hbt - HTML Bundler and Template engine</title>
+</head>
+<body>
+		<div class="banner">
+		<img src="assets/logo.png" alt="hbt logo" class="logo">
+		<p>
+			<a href="#usage">get started</a>
+			<a href="https://github.com/0shuvo0/hbt">github</a>
+			<a class="github-button" href="https://github.com/0shuvo0/hbt" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star shuvo/hbt on GitHub">Star</a>
+		</p>
+	</div>
+	
+	<div class="container">
+				<section>
+			<h1 class="h1">What is hbt?</h1>	
+			<p class="h2"><b>hbt</b> stands for HTML Bundler & Template Engine.</p>
+			<p class="h2">hbt = HTML + Super Power</p>
+		</section>
+		
+		<section>
+			<h1 class="h1">Why hbt?</h1>
+			<p>Although frameworks like Vue, React, Angular has made out life very easy. However sometimes for small projects and portfolio we often use Just vanilla js and have just one index.html file. In that case sometimes HTML file gets really long and hand to maintain. But worry not hbt is here to rescue.
+			With hbt you have many super powers like come splitting and a lot more. And since hbt is a Dev Dependency and <b>works as compiler</b> your end code will have <b>0 performance loss</b>.</p>
+		</section>
+		
+				<div id="usage">
+			<section>
+				<h1 class="h1">Installing hbt</h1>
+				<pre data-language="javascript"><code>npm i hbt -D</code></pre>
+			</section>
+			<section>
+				<h1 class="h1">Usage</h1>
+				<p class="mb-2">Create a js file and populate it like shown below and run it with node</p>
+<pre data-language="javascript"><code>const { compile } = require('hbt')
+
+//Path to development file
+const dev = "./dev/index.html"
+
+//Path to production file
+const build = "./build/index.html"
+
+//If you wanna pass some data define them
+// you'll be able to access them using data.propertyName
+const data = {
+	title: "My Website",
+	links: ["home", "about", "login"]
+}
+
+//Optionally you can pass some option
+// here are available options and their default
+const ops = {
+	info: true, //Is set false fewer console logs will be shown
+	watch: false, //Weather to auto recompile on file change or not
+	minify: false //if set true output HTML will be minify
+}
+
+//Only first 2 arguments are required
+compile(dev, build, data, ops)
+</code></pre>
+			</section>
+		</div>
+		
+				<section id="rules">
+			<h1 class="h1">3 Rules To follow</h1>
+			<div class="rule">
+				<p class="mb-1"><span class="no">1.</span> To output data use <span>{</span>{}} syntax. You'd be able to use JavaScript inside those braces</p>
+				<pre style="color: #F92672">&lt;title&gt;<span style="color: #fff"><span>{</span>{ data.title }}</span>&lt;/title&gt;</pre>
+			</div>
+			<div class="rule mlc">
+				<p class="mb-1"><span class="no">2.</span> To execute JavaScript statement that doesn't output anything use <span><</span>%%> syntax.</p>
+				<pre class="first"><code data-language="html">&lt;ul&gt;</pre></code>
+				<pre data-language="javascript">&nbsp;&nbsp;&nbsp;<span style="color: #F92672"><</span><code>% data.links.map(link => { %></code></pre>
+				<pre style="color: #F92672">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<span style="color: #fff"><span>{</span>{ link }}</span>&lt;/li&gt;</pre>
+				<pre data-language="javascript">&nbsp;&nbsp;&nbsp;<span style="color: #F92672"><</span><code>% }} %></code></pre>
+				<pre class="last"><code data-language="html">&lt;/ul&gt;</pre></code>
+			</div>
+			<div class="rule">
+				<p class="mb-1"><span class="no">3.</span> While using hbt <span class="highlight">only use single qoutes</span>. Double quotes will cause issue.</p>
+			</div>
+		</section>
+		
+				<section class="utils">
+			<h1 class="h1">hbt utilities</h1>
+			<div class="util">
+				<p class="h2 b">lorem</p>
+				<p>You may have used lorem ipsum. Its basically random text generator. hbt has a function to do that. Just call hbt.lorem function with number of words you want.</p>
+				<pre style="color: #F92672">&lt;p&gt;<span style="color: #fff"><span>{</span>{ hbt.lorem(8) }}</span>&lt;/p&gt;</pre>
+				<p>The output will be</p>
+				<pre style="color: #F92672">&lt;p&gt;<span style="color: #fff">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>&lt;/p&gt;</pre>
+			</div><!-- /lorem -->
+			<div class="util">
+				<p class="h2 b">picsum</p>
+				<p>Similar to lorem ipsum there is lorem picsum to genrate random image url.</p>
+				<p>To get a url of a square image:</p>
+				<pre><span style="color: #F92672">&lt;img src="</span><span style="color: #fff"><span>{</span>{ hbt.picsum(200) }}</span><span style="color: #F92672">" alt=""&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;img src="https://picsum.photos/200" alt=""&gt;</code></pre>
+				<p>Or to get a url of a square image of specific width and height:</p>
+				<pre><span style="color: #F92672">&lt;img src="</span><span style="color: #fff"><span>{</span>{ hbt.picsum(200, 300) }}</span><span style="color: #F92672">" alt=""&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;img src="https://picsum.photos/200/300" alt=""&gt;</code></pre>
+				<p>Lastly you can set third argument to true to get same image every time</p>
+				<pre><span style="color: #F92672">&lt;img src="</span><span style="color: #fff"><span>{</span>{ hbt.picsum(200, 300, true) }}</span><span style="color: #F92672">" alt=""&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;img src="https://picsum.photos/seed/picsum/200/300" alt=""&gt;</code></pre>
+			</div><!-- /picsum -->
+			<div class="util">
+				<p class="h2 b">font</p>
+				<p>You can use the font function to get google font cdn</p>
+				<pre><span style="color: #F92672">&lt;link href="</span><span style="color: #fff"><span>{</span>{ hbt.font('Roboto') }}</span><span style="color: #F92672">" rel="stylesheet"&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet"&gt;</code></pre>
+				<p>You can add array of font weights as second argument</p>
+				<pre><span style="color: #F92672">&lt;link href="</span><span style="color: #fff"><span>{</span>{ hbt.font('Roboto', [100, 400, 900]) }}</span><span style="color: #F92672">" rel="stylesheet"&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet"&gt;</code></pre>
+			</div><!-- /font -->
+			<div class="util">
+				<p class="h2 b">resource</p>
+				<p>This is a really powerful utility of hbt. With this function you can download resources from CDN and link it in HTML directly. It takes three argument: CDN link, save to save in(starting after build folder), and name to save as. eg:</p>
+				<pre><span style="color: #F92672">&lt;link href="</span><span style="color: #fff"><span>{</span>{ hbt.resource('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', '/css/', 'bootstrap.css') }}</span><span style="color: #F92672">" rel="stylesheet"&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;link href="/css/bootstrap.css" rel="stylesheet"&gt;</code></pre>
+				<p>This will create css folder(if doesn't exists) inside build folder and download bootstrap CSS locally. While using this <span class="highlight">make sure url absolutely point to the file.</span></p>
+			</div><!-- /resource -->
+			<div class="util">
+				<p class="h2 b">include</p>
+				<p>include is another really helpful function. You can use it to import HTML Component/File or svg file in your html.</p>
+				<pre><span>{</span>{<code data-language="javascript"> hbt.include('./components/footer.html') </code>}}</pre>
+				<p>If you want you can also pass data in include function. Then in that file/component you'll be able to use those data using data.property</p>
+				<pre><span>{</span>{<code data-language="javascript"> hbt.include('./components/footer.html', {year: 2020}) </code>}}</pre>
+			</div><!-- /include -->
+			<div class="util">
+				<p class="h2 b">cdn</p>
+				<p>hbt also ships with some useful CDN links. you can access them using hbt.cdn.name</p>
+				<pre><span style="color: #F92672">&lt;link href="</span><span style="color: #fff"><span>{</span>{ hbt.cdn.MDI }}</span><span style="color: #F92672">" rel="stylesheet"&gt;</span></pre>
+				<p>The output will be</p>
+				<pre><code data-language="html">&lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;</code></pre>
+				<p>Available CDNs:</p>
+				<p><b>Font awesome:</b> FA</p>
+				<p><b>Material design icons:</b> MDI</p>
+				<p><b>Bootstrap CSS:</b> BOOTSTRAP_CSS</p>
+				<p><b>Bootstrap JS:</b> BOOTSTRAP_JS</p>
+				<p><b>JQuery:</b> JQUERY</p>
+				<p><b>Popper:</b> POPPER</p>
+				
+			</div>
+		</section>
+		
+				<section id="advanced">
+			<h1 class="h1">Advance examples</h1>
+			<div class="adv-ex mlc">
+				<p class="h2 b mb-1">Nesting statements</p>
+				<pre class="first" data-language="javascript"><span style="color: #F92672"><</span><code>% if(data.todos.length > 0){ %></code></pre>
+				<pre><code data-language="html">&#9;&lt;ul&gt;</pre></code>
+				<pre data-language="javascript"><span style="color: #F92672">&#9;&#9;<</span><code>% data.todos.map(todo => { %></code></pre>
+				<pre style="color: #F92672">&#9;&#9;&#9;&lt;li&gt;<span style="color: #fff"><span>{</span>{ todos.title }}</span>&lt;/li&gt;</pre>
+				<pre data-language="javascript"><span style="color: #F92672">&#9;&#9;<</span><code>% }} %></code></pre>
+				<pre><code data-language="html">&#9;&lt;/ul&gt;</pre></code>
+				<pre data-language="javascript"><span style="color: #F92672"><</span><code>% }else{ %></code></pre>
+				<pre style="color: #F92672">&#9;&lt;p&gt;<span style="color: #fff">No todos yet</span>&lt;/p&gt;</pre>
+				<pre class="last" data-language="javascript"><span style="color: #F92672"><</span><code>% } %></code></pre>
+			</div><!-- /Nesting -->
+			<div class="adv-ex">
+				<p class="h2 b mb-1">downloading hbt cdn</p>
+				<pre><span style="color: #F92672">&lt;link href="</span><span style="color: #fff"><span>{</span>{ hbt.resource(hbt.cdn.BOOTSTRAP_CSS, '/css/', 'bootstrap.css') }}</span><span style="color: #F92672">" rel="stylesheet"&gt;</span></pre>
+			</div><!-- /CDN resource -->
+			<div class="adv-ex mlc">
+				<p class="h2 b mb-1">passing big data</p>
+				<pre class="first" data-language="javascript"><span style="color: #F92672"><</span><code>%</code></pre>
+<pre data-language="javascript"><code>const post = {
+	title: "hbt rocks",
+	img: "https://fakeurl.com/img.jpg",
+	reacts: 75,
+	tags: ["hbt", "bundler", "template engine"]
+}
+</code></pre>
+				<pre data-language="javascript"><code>%</code><span style="color: #F92672">></span></pre>
+				<pre class="last"><span>{</span>{<code data-language="javascript"> hbt.include('./components/card.html', post) </code>}}</pre>
+			</div><!-- -->
+		</section>
+		
+		
+		<footer class="footer">
+			hbt - &copy; 2020
+		</footer>
+	</div><!-- /container -->
+	
+	
+	<script src="js/buttons.js"></script>
+	<script src="js/rainbow/rainbow.js"></script>
+	<script src="js/rainbow/generic.js"></script>
+	<script src="js/rainbow/html.js"></script>
+	<script src="js/rainbow/javascript.js"></script>
+</body>
+</html>
