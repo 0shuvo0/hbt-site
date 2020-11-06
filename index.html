@@ -141,7 +141,7 @@ compile(dev, build, data, ops)
 			</div><!-- /font -->
 			<div class="util">
 				<p class="h2 b">resource</p>
-				<p>This is a really powerful utility of hbt. With this function you can download resources from CDN and link it in HTML directly. It takes three argument: CDN link, save to save in(starting after build folder), and name to save as. eg:</p>
+				<p>This is a really powerful utility of hbt. With this function you can download resources from CDN and link it in HTML directly. It takes three argument: CDN link, folder to save in(starting after build folder), and name to save as. eg:</p>
 				<pre><span style="color: #F92672">&lt;link href="</span><span style="color: #fff"><span>{</span>{ hbt.resource('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', '/css/', 'bootstrap.css') }}</span><span style="color: #F92672">" rel="stylesheet"&gt;</span></pre>
 				<p>The output will be</p>
 				<pre><code data-language="html">&lt;link href="/css/bootstrap.css" rel="stylesheet"&gt;</code></pre>
